@@ -1,0 +1,24 @@
+<template name="loanPayoff">
+    <div class="ui grid" id="loanPayoff">
+      <div class="row">
+       <div class="grey four wide column">Date</div> <div class="divider"></div>
+       <div class="grey four wide column">Principal</div> <div class="divider"></div>
+       <div class="grey four wide column">Interest</div> <div class="divider"></div>
+       <div class="grey four wide column">Balance</div>
+      </div>
+       <div class="row">
+        {{#each loanPayoff}}
+          {{#each payoff}}
+          <div class="four wide column">{{date}}</div>
+          <div class="four wide column">{{principal}}</div>
+          <div class="four wide column">{{interest}}</div>
+          <div class="four wide column">{{balance}}</div>
+          {{/each}}
+        {{/each}}
+       </div>
+    </div>
+
+    <form class="calculate-payoff">
+           <div class="ui large primary button">Calculate Payoff</div>
+    </form>
+</template>
