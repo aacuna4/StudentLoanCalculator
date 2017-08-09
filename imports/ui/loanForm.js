@@ -26,7 +26,7 @@ Template.loanForm.events({
     // Prevent default browser form submit
     event.preventDefault();
     Loans.remove({});
-    LoanPayoff.remove({});
+    LoanPayoff.remove({}); //test
 
     // Get value from for.amount.value;
     const balance = $('#balance');
