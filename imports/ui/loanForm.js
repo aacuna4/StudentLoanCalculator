@@ -1,9 +1,7 @@
 import { Template } from 'meteor/templating';
-
+import initCollections from '../api/collections'
 import Chart from 'chart.js';
-
 import '../api/helperFunctions.js';
-
 import './loanForm.html'
 
 // let ctx = null;
@@ -27,27 +25,27 @@ Template.loanForm.events({
   'click #new-loan'(event) {
     // Prevent default browser form submit
     event.preventDefault();
+    Loans.remove({});
+    LoanPayoff.remove({});
 
     // Get value from for.amount.value;
     const balance = $('#balance');
     const rate = $('#rate');
     const minimum = $('#minimum');
-    const paymentStartDate = $('#paymentStartDate');
-
 
     // Insert a task into the collection
     Loans.insert({
       balance : parseFloat(balance.val()),
       rate : parseFloat(rate.val()),
       minimum : parseFloat(minimum.val()),
-      paymentStartDate : new Date(paymentStartDate.val())
+      // paymentStartDate : new Date(paymentStartDate.val())
     });
 
     // Clear form
-    balance.val('');
-    rate.val('');
-    minimum.val('');
-    paymentStartDate.val('');
+    // balance.val('');
+    // rate.val('');
+    // minimum.val('');
+    // // paymentStartDate.val('');
 
     calculatePayoff();
     // console.log(loansArray);

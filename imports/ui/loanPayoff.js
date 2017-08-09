@@ -9,8 +9,6 @@ import './loanPayoff.html'
 // let ctx = null;
 
 Template.loanPayoff.onRendered(function(){
-  // ctx = document.getElementById('myChart').getContext('2d');
-  // this.$('.ui grid').grid();
   $('.ui #loanPayoff').hide()
 });
 
@@ -27,12 +25,10 @@ Template.loanPayoff.helpers({
 });
 
 calculatePayoff = function(){
-  LoanPayoff.remove({});
 
-  //set the balance equal to the sum of all the loans
-    let interestPaid = 0;
-    let principalPaid = 0;
-    let totalPaid = 0;
+  let totalPrincipalPaid = 0;
+  let totalInterestPaid = 0;
+  let totalPaid = 0;
 
   let loanNumber = 1;
 
@@ -42,7 +38,7 @@ calculatePayoff = function(){
     let balance = loan.balance;
 
     let date = new Date();
-    let paymentDate = new Date(loan.paymentStartDate);
+    let paymentDate = new Date();
     let payoff = [];
 
 
@@ -73,13 +69,18 @@ calculatePayoff = function(){
   });
 
   LoanPayoff.find({}).forEach(function(payoff){
-    principalPaid += payoff['payoff'].map(el => el.principal).reduce((sum, curr) => sum + curr);
-    interestPaid += payoff['payoff'].map(el => el.interest).reduce((sum, curr) => sum + curr);
+    totalPrincipalPaid += payoff['payoff'].map(el => el.principal).reduce((sum, curr) => sum + curr);
+    totalInterestPaid += payoff['payoff'].map(el => el.interest).reduce((sum, curr) => sum + curr);
   });
 
-  totalPaid = principalPaid + interestPaid
-  // console.log(principalPaid);
-  // console.log(interestPaid);
-  // console.log(totalPaid);
+  totalPaid = totalPrincipalPaid + totalInterestPaid
 
+  TotalPrincipalPaid.set(Math.trunc(totalPrincipalPaid));
+  TotalInterestPaid.set(Math.trunc(totalInterestPaid));
+  TotalPaid.set(Math.trunc(totalPaid));
+
+
+  // console.log(totalPrincipalPaid);
+  // console.log(totalInterestPaid);
+  // console.log(totalPaid);
 }
