@@ -1,5 +1,3 @@
-import { Template } from 'meteor/templating';
-
 Template['payoffResult'].onRendered(function(){
 
 });

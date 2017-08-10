@@ -1,8 +1,4 @@
-import { Template } from 'meteor/templating';
-import Chart from 'chart.js';
-import '../api/helperFunctions.js';
-
-// let ctx = null;
+import '../../api/helperFunctions.js';
 
 Template['loanForm'].onRendered(function(){
 
@@ -28,13 +24,15 @@ Template['loanForm'].events({
     const balance = $('#balance');
     const rate = $('#rate');
     const minimum = $('#minimum');
+    const extraPayment = $('#extraPayment');
+
 
     // Insert a task into the collection
     Loans.insert({
       balance : parseFloat(balance.val()),
       rate : parseFloat(rate.val()),
       minimum : parseFloat(minimum.val()),
-      // paymentStartDate : new Date(paymentStartDate.val())
+      extraPayment : parseFloat(extraPayment.val()),
     });
 
     calculatePayoff();

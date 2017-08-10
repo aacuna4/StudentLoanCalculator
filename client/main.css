@@ -30,3 +30,17 @@ header {
   padding: 20px 15px 15px 15px;
   position: relative;
 }*/
+.masthead.segment {
+  min-height: 350px;
+  padding: 1em 0em;
+}
+
+.ui.container.resultGrid {
+  box-shadow:
+      0 4px 8px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.loanForm.ui {
+  background-color: #f1f7fe;
+}

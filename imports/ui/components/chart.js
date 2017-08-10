@@ -1,21 +1,17 @@
-import { Template } from 'meteor/templating';
 import { Mongo } from 'meteor/mongo';
 import Chart from 'chart.js';
-
-import '../api/helperFunctions.js';
-
-import './chart.html'
+import '../../api/helperFunctions.js';
 
 let ctx = null;
 
-Template.chart.onRendered(function(){
+Template['chart'].onRendered(function(){
   ctx = document.getElementById('myChart').getContext('2d');
 });
 
-Template.chart.helpers({
+Template['chart'].helpers({
 });
 
-Template.chart.events({
+Template['chart'].events({
   'click .show-chart'(event) {
     // Prevent default browser form submit
     event.preventDefault();

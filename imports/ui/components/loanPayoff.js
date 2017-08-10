@@ -1,6 +1,4 @@
-import { Template } from 'meteor/templating';
 import { Mongo } from 'meteor/mongo';
-import Chart from 'chart.js';
 import '../../api/helperFunctions.js';
 
 Template['loanPayoff'].onRendered(function(){
