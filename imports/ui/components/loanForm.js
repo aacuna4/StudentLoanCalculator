@@ -1,18 +1,14 @@
 import { Template } from 'meteor/templating';
-import initCollections from '../api/collections'
 import Chart from 'chart.js';
 import '../api/helperFunctions.js';
-import './loanForm.html'
 
 // let ctx = null;
 
-Template.loanForm.onRendered(function(){
-  // ctx = document.getElementById('myChart').getContext('2d');
-  // this.$('.ui grid').grid();
+Template['loanForm'].onRendered(function(){
+
 });
 
-
-Template.loanForm.helpers({
+Template['loanForm'].helpers({
   loans() {
     return Loans.find({}, { sort: { createdAt: 1 } });
   },
@@ -21,7 +17,7 @@ Template.loanForm.helpers({
   }
 });
 
-Template.loanForm.events({
+Template['loanForm'].events({
   'click #new-loan'(event) {
     // Prevent default browser form submit
     event.preventDefault();
@@ -41,13 +37,6 @@ Template.loanForm.events({
       // paymentStartDate : new Date(paymentStartDate.val())
     });
 
-    // Clear form
-    // balance.val('');
-    // rate.val('');
-    // minimum.val('');
-    // // paymentStartDate.val('');
-
     calculatePayoff();
-    // console.log(loansArray);
   }
 });

@@ -1,18 +1,13 @@
 import { Template } from 'meteor/templating';
 import { Mongo } from 'meteor/mongo';
 import Chart from 'chart.js';
+import '../../api/helperFunctions.js';
 
-import '../api/helperFunctions.js';
-
-import './loanPayoff.html'
-
-// let ctx = null;
-
-Template.loanPayoff.onRendered(function(){
+Template['loanPayoff'].onRendered(function(){
   $('.ui #loanPayoff').hide()
 });
 
-Template.loanPayoff.helpers({
+Template['loanPayoff'].helpers({
   loans() {
     return Loans.find({}, { sort: { createdAt: 1 } });
   },
@@ -78,9 +73,4 @@ calculatePayoff = function(){
   TotalPrincipalPaid.set(Math.trunc(totalPrincipalPaid));
   TotalInterestPaid.set(Math.trunc(totalInterestPaid));
   TotalPaid.set(Math.trunc(totalPaid));
-
-
-  // console.log(totalPrincipalPaid);
-  // console.log(totalInterestPaid);
-  // console.log(totalPaid);
 }
