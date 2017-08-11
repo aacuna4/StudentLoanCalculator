@@ -4,12 +4,18 @@ Template['payoffResult'].onRendered(function(){
 
 Template['payoffResult'].helpers({
   TotalPrincipalPaid() {
-    return TotalPrincipalPaid ? TotalPrincipalPaid.get() : 0;
+    return TotalPrincipalPaid.get();
   },
   TotalInterestPaid() {
-    return TotalInterestPaid ? TotalInterestPaid.get() : 0;
+    return TotalInterestPaid.get();
   },
   TotalPaid() {
-    return TotalPaid ? TotalPaid.get() : 0;
+    return TotalPaid.get();
+  },
+  TotalInterestPaidWithExtra() {
+    return TotalInterestPaidWithExtra.get();
+  },
+  TotalPaidWithExtra() {
+    return TotalPaidWithExtra.get();
   },
 });

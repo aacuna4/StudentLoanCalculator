@@ -3,4 +3,8 @@ export default function initGlobalVariables(){
   TotalInterestPaid = new ReactiveVar(0);
   TotalPrincipalPaid = new ReactiveVar(0);
   TotalPaid = new ReactiveVar(0);
+  TotalInterestPaidWithExtra = new ReactiveVar(0);
+  TotalPaidWithExtra = new ReactiveVar(0);
+
+
 }

@@ -1,6 +1,6 @@
 <template name="payoffResult">
-  <div class="ui container resultGrid">
-  <div class="ui two column grid" id="payoffResults">
+  <div class="ui raised segment">
+  <div class="ui two column internally celled grid" id="payoffResults">
     <div class="row">
       <div class="eight wide column">
 
@@ -36,8 +36,26 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="eight wide column">
+          Total Interest Paid With Extra
+      </div>
+      <div class="eight wide column">
+          {{TotalInterestPaidWithExtra}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="eight wide column">
+          Total Paid With Extra
+      </div>
+      <div class="eight wide column">
+          {{TotalPaidWithExtra}}
+      </div>
+    </div>
+
   </div>
 </div>
-  
+
 
 </template>

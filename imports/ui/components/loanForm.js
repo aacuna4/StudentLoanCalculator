@@ -5,12 +5,6 @@ Template['loanForm'].onRendered(function(){
 });
 
 Template['loanForm'].helpers({
-  loans() {
-    return Loans.find({}, { sort: { createdAt: 1 } });
-  },
-  loanPayoff(){
-    return LoanPayoff.find({}, { sort: { createdAt: 1 } });
-  }
 });
 
 Template['loanForm'].events({
@@ -26,14 +20,20 @@ Template['loanForm'].events({
     const minimum = $('#minimum');
     const extraPayment = $('#extraPayment');
 
-
-    // Insert a task into the collection
     Loans.insert({
+      id : 1,
       balance : parseFloat(balance.val()),
       rate : parseFloat(rate.val()),
       minimum : parseFloat(minimum.val()),
-      extraPayment : parseFloat(extraPayment.val()),
     });
+
+    Loans.insert( {
+      id : 2,
+      balance : parseFloat(balance.val()),
+      rate : parseFloat(rate.val()),
+      minimum : parseFloat(minimum.val()) + parseFloat(extraPayment.val()),
+    });
+
 
     calculatePayoff();
   }

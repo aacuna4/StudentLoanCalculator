@@ -23,8 +23,6 @@ calculatePayoff = function(){
   let totalInterestPaid = 0;
   let totalPaid = 0;
 
-  let loanNumber = 1;
-
   Loans.find({}).forEach(function(loan){
     //TODO: figure out days from month to month
     let dailyinterest = (loan.rate/100)/365;
@@ -42,7 +40,7 @@ calculatePayoff = function(){
       balance = parseFloat((balance < principal ? 0 : balance - principal));
 
       payoff.push({
-        datey: date.getMonth() + ' ' + date.getFullYear(),
+        date: date.getMonth() + ' ' + date.getFullYear(),
         principal,
         interest,
         balance
@@ -54,21 +52,32 @@ calculatePayoff = function(){
     }
 
     LoanPayoff.insert({
-      'LoanIndex': loanNumber,
+      id : loan.id,
       payoff
     })
-
-    loanNumber += 1;
   });
 
-  LoanPayoff.find({}).forEach(function(payoff){
-    totalPrincipalPaid += payoff['payoff'].map(el => el.principal).reduce((sum, curr) => sum + curr);
+  LoanPayoff.find({id : 1}).forEach(function(payoff){
     totalInterestPaid += payoff['payoff'].map(el => el.interest).reduce((sum, curr) => sum + curr);
   });
 
+  totalPrincipalPaid = Loans.findOne({id : 1}).balance;
   totalPaid = totalPrincipalPaid + totalInterestPaid
 
   TotalPrincipalPaid.set(Math.trunc(totalPrincipalPaid));
   TotalInterestPaid.set(Math.trunc(totalInterestPaid));
   TotalPaid.set(Math.trunc(totalPaid));
+
+  totalPrincipalPaid = Loans.findOne({id : 2}).balance;
+  totalInterestPaid = 0;
+  totalPaid = 0;
+
+  LoanPayoff.find({id : 2}).forEach(function(payoff){
+    totalInterestPaid += payoff['payoff'].map(el => el.interest).reduce((sum, curr) => sum + curr);
+  });
+
+  totalPaid = totalPrincipalPaid + totalInterestPaid
+
+  TotalInterestPaidWithExtra.set(Math.trunc(totalInterestPaid));
+  TotalPaidWithExtra.set(Math.trunc(totalPaid));
 }
